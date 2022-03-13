@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 const Container = styled(Link)`
   // a4 paper size
-  width: 210px;
-  height: 297px;
+  width: 140px;
+  height: 197px;
   display: flex;
   align-items: center;
   justify-content: center;
