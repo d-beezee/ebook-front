@@ -9,13 +9,16 @@ import styled from "styled-components";
 
 type Alignment = "left" | "center" | "right";
 const PdfList = styled.div<{align:Alignment}>`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 100px);
+  column-gap: 30px;
+  
   justify-content: ${props => {
     switch (props.align) {
       case "left":
         return "flex-start";
       case "center":
-        return "space-evenly";
+        return "center";
       case "right":
         return "flex-end";
     }

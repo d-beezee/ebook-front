@@ -11,7 +11,15 @@ import VisibilitySensor from "react-visibility-sensor";
 import PageLoader from "@/components/PageLoader";
 
 const width = 600;
+const StyledPage = styled(Page)`
+  max-width: 100%;
+  canvas {
+    max-width: 100%;
+    height: auto!important;
+  }
+`;
 const Reader = styled.div`
+  max-width: 100%;
   width: ${width + 10}px;
   margin: 0 auto;
 `;
@@ -24,7 +32,7 @@ export default ({ id }: { id: number }) => {
   const dispatch = useAppDispatch();
 
   const updatePageNumber = (current: number) => {
-    fetch(`http://localhost:3001/list/${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/list/${id}`, {
       method: "PATCH",
       body: JSON.stringify({
         current,
@@ -49,7 +57,12 @@ export default ({ id }: { id: number }) => {
   return (
     <Reader>
       <PageLoader style={{ display: numPages ? "none" : undefined }} />
-      <SimpleBar style={{ maxHeight: "calc(100vh - 55px)",display: numPages ?  undefined : "none" }}>
+      <SimpleBar
+        style={{
+          maxHeight: "calc(100vh - 55px)",
+          display: numPages ? undefined : "none",
+        }}
+      >
         <Document
           file={`data:application/pdf;base64,${pdf?.base64}`}
           onLoadSuccess={({ numPages }: { numPages: number }) => {
@@ -70,7 +83,7 @@ export default ({ id }: { id: number }) => {
                   }
                 }}
               >
-                <Page
+                <StyledPage
                   pageNumber={index + 1}
                   width={width}
                   loading={<PageLoader />}

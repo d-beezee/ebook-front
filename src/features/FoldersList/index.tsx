@@ -12,6 +12,7 @@ const FolderList = styled.div`
   grid-template-columns: repeat(auto-fill, 100px);
   column-gap: 30px;
   text-align: center;
+  margin-bottom: 20px;
 `;
 export default ({ id }: { id?: number }) => {
   const dispatch = useAppDispatch();
@@ -30,7 +31,7 @@ export default ({ id }: { id?: number }) => {
   return (
     <FolderList>
       {list.map((item) => (
-        <Folder item={item} />
+        <Folder key={item.id} item={item} />
       ))}
     </FolderList>
   );

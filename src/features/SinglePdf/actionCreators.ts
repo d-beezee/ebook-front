@@ -5,7 +5,7 @@ export const fetchPdf = (dispatch: AppDispatch, id: number) => {
   dispatch(startFetching());
   dispatch(setTitle("Loading..."));
 
-  fetch("http://localhost:3001/list/" + id)
+  fetch(process.env.REACT_APP_API_URL + "/list/" + id)
     .then((response) => response.json())
     .then((item) => {
       dispatch(finishFetching({ item }));

@@ -22,7 +22,7 @@ export const Settings = () => {
               !isLoading
                 ? () => {
                     setIsLoading(true);
-                    fetch("http://localhost:3001/generate").finally(() => {
+                    fetch(process.env.REACT_APP_API_URL + "/generate").finally(() => {
                       setIsLoading(false);
                     });
                   }

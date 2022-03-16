@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 const Container = styled(Link)`
   // a4 paper size
+  max-width: 100%;
   width: 140px;
-  height: 197px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,6 +14,8 @@ const Container = styled(Link)`
   text-decoration: none;
   img {
     width: 100%;
+    width: 140px;
+    height: 197px;
     height: auto
   }
 `;
