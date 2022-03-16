@@ -15,6 +15,7 @@ export default () => {
               <Route path="/" element={<Pages.List />} />
               <Route path="/settings" element={<Pages.Settings />} />
               <Route path="/list/:id" element={<Pages.Single />} />
+              <Route path="/folder/:id" element={<Pages.Folder />} />
             </Routes>
           </Sidebar>
         </Router>

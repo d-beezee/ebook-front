@@ -61,7 +61,7 @@ export default ({ children }: { children: React.ReactNode }) => {
       <Body>
         <Header><PageData.Title /></Header>
         <Content>
-          <Main style={{paddingTop:"20px"}}>{children}</Main>
+          <Main>{children}</Main>
         </Content>
       </Body>
     </Chrome>

@@ -5,11 +5,27 @@ import { useEffect } from "react";
 import { fetchPdfs } from "./actionCreators";
 import PdfPreview from "@/components/PdfPreview";
 import PageLoader from "@/components/PageLoader";
-export default () => {
+import styled from "styled-components";
+
+type Alignment = "left" | "center" | "right";
+const PdfList = styled.div<{align:Alignment}>`
+  display: flex;
+  justify-content: ${props => {
+    switch (props.align) {
+      case "left":
+        return "flex-start";
+      case "center":
+        return "space-evenly";
+      case "right":
+        return "flex-end";
+    }
+  }};
+`;
+export default ({folder, align = "center"}:{folder?:number, align?: Alignment}) => {
   const dispatch = useAppDispatch();
   useEffect(() => {
-    fetchPdfs(dispatch);
-  }, []);
+    fetchPdfs(dispatch,folder);
+  }, [folder]);
   // The `state` arg is correctly typed as `RootState` already
   const { list, loading } = useAppSelector((state) => ({
     list: state.pdflist.list,
@@ -20,7 +36,7 @@ export default () => {
     return <PageLoader />;
   }
   return (
-    <div style={{display:"flex",justifyContent:"space-evenly"}}>
+    <PdfList align={align}>
       {list.map((item) => {
         return (
           <div key={item.id}>
@@ -28,6 +44,6 @@ export default () => {
           </div>
         );
       })}
-    </div>
+    </PdfList>
   );
 };
